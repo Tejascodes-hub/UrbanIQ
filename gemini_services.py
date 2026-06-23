@@ -34,4 +34,5 @@ def analyze_issue_image(image_bytes: bytes) -> dict:
       print("GEMINI ERROR:", e)
     raise
 
+    print("RAW RESPONSE:", response.text)
     return json.loads(response.text)
