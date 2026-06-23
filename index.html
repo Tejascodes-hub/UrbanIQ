@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanIQ - Civic Issue Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>UrbanIQ Dashboard</h1>
+        <p>AI-Powered Civic Issue Platform</p>
+    </header>
+
+    <main class="container">
+        <!-- Dashboard Counter Cards -->
+        <section class="metrics">
+            <div class="card">
+                <h3>Total Submissions</h3>
+                <p id="stat-total">0</p>
+            </div>
+            <div class="card">
+                <h3>Urgent Issues (High)</h3>
+                <p id="stat-high">0</p>
+            </div>
+        </section>
+
+        <div class="grid">
+            <!-- Upload Panel -->
+            <section class="card">
+                <h2>Report an Issue</h2>
+                <form id="upload-form">
+                    <div class="drop-zone">
+                        <label for="image-file">Click to pick or drag your image here</label>
+                        <input type="file" id="image-file" accept="image/*" required>
+                    </div>
+                    <button type="submit" id="submit-btn">Run AI Diagnostic</button>
+                </form>
+                <div id="loader" class="hidden">Gemini AI is parsing details...</div>
+            </section>
+
+            <!-- Diagnostic Real-Time View -->
+            <section id="result-card" class="card hidden">
+                <h2>Diagnostic Results</h2>
+                <div class="result-layout">
+                    <img id="preview-img" src="" alt="Civic Preview">
+                    <div class="details">
+                        <p><strong>Type:</strong> <span id="res-type"></span></p>
+                        <p><strong>Severity:</strong> <span id="res-severity"></span></p>
+                        <p><strong>Impact Score:</strong> <span id="res-impact"></span>/10</p>
+                        <p><strong>Department:</strong> <span id="res-dept"></span></p>
+                        <p><strong>Details:</strong> <span id="res-desc"></span></p>
+                        <p><strong>Action:</strong> <span id="res-action"></span></p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- History Log System -->
+        <section class="card table-container">
+            <h2>Community Issue Registry Log</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Issue Classification</th>
+                        <th>Severity</th>
+                        <th>Department Assignment</th>
+                        <th>Impact</th>
+                    </tr>
+                </thead>
+                <tbody id="logs-table-body"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
