@@ -34,7 +34,14 @@ def analyze_issue_image(image_bytes: bytes) -> dict:
     )
     except Exception as e:
       print("GEMINI ERROR:", e)
-    raise
+      return {
+        "issue_type": "ERROR",
+        "severity": "High",
+        "impact_score": 10,
+        "department": "Public Works",
+        "description": str(e),
+        "recommended_action": "Check logs"
+    }
 
     print("RAW RESPONSE:", response.text)
     return json.loads(response.text)
