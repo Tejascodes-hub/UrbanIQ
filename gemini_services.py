@@ -7,6 +7,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+for m in genai.list_models():
+   print(m.name)
+print("API KEY FOUND:", os.getenv("GEMINI_API_KEY") is not None)
+print("API KEY LENGTH:", len(os.getenv("GEMINI_API_KEY", "")))
 
 PROMPT = """
 Analyze this civic issue image and provide details strictly in the following JSON format:
