@@ -22,14 +22,7 @@ def startup_event():
 async def report_issue(file: UploadFile = File(...)):
     try:
         image_bytes = await file.read()
-        analysis_result = {
-    "issue_type": "Pothole",
-    "severity": "High",
-    "impact_score": 5,
-    "department": "Public Works",
-    "description": "Test report",
-    "recommended_action": "Repair road"
-}
+        analysis_result = analyze_issue_image(image_bytes)
         save_report(analysis_result)
         return {"status": "success", "data": analysis_result}
     except Exception as e:
