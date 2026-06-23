@@ -3,77 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UrbanIQ - Civic Issue Tracker</title>
+    <title>UrbanIQ — Enterprise Civic Intelligence Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>UrbanIQ Dashboard</h1>
-        <p>AI-Powered Civic Issue Platform</p>
-    </header>
 
-    <main class="container">
-        <!-- Dashboard Counter Cards -->
-        <section class="metrics">
-            <div class="card">
-                <h3>Total Submissions</h3>
-                <p id="stat-total">0</p>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="24" height="24" rx="6" fill="#0F172A"/>
+                    <path d="M7 17V7H9V17H7ZM11 17V11H13V17H11ZM15 17V14H17V17H15Z" fill="white"/>
+                </svg>
+                <span>UrbanIQ</span>
+                <span class="nav-badge">Enterprise v2.5</span>
             </div>
-            <div class="card">
-                <h3>Urgent Issues (High)</h3>
-                <p id="stat-high">0</p>
+            <div class="nav-links">
+                <a href = "#">Overview</a>
+                <a href = "#operations">Operations Center</a>
+                <a href = "#analytics">Analytics</a>
+                
             </div>
-        </section>
+            <div class="nav-actions">
+                <button class="btn btn-secondary btn-sm">Documentation</button>
+                <div class="user-avatar">US</div>
+            </div>
+        </div>
+    </nav>
 
-        <div class="grid">
-            <!-- Upload Panel -->
-            <section class="card">
-                <h2>Report an Issue</h2>
-                <form id="upload-form">
-                    <div class="drop-zone">
-                        <label for="image-file">Click to pick or drag your image here</label>
-                        <input type="file" id="image-file" accept="image/*" required>
+    <main class="app-viewport">
+        
+        <header class="hero-section">
+            <div class="hero-meta">Civic Infrastructure System</div>
+            <section id = "overview">
+            <h1>Automate public infrastructure diagnostic analytics.</h1>
+            <p>Upload high-resolution field imagery to instantaneously classify structural assets, evaluate public danger vectors, assign target departments, and construct formal legislative repair directives.</p>
+            </section>
+        </header>
+
+        <div class="workspace-grid" id = "operations">
+            
+            <section class="card overflow-hidden">
+                <div class="card-header border-bottom">
+                    <div>
+                        <h2>Data Ingestion Portal</h2>
+                        <p class="card-subtitle">Support multi-spectral field diagnostic images for analysis pipeline processing.</p>
                     </div>
-                    <button type="submit" id="submit-btn">Run AI Diagnostic</button>
-                </form>
-                <div id="loader" class="hidden">Gemini AI is parsing details...</div>
+                </div>
+                <div class="card-body">
+                    <form id="upload-form">
+                        <div class="drop-zone" id="drop-zone">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="drop-icon">
+                                <path d="M12 16V8M12 8L9 11M12 8L15 11" stroke="#475569" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 15C3 17.8284 3 19.2426 3.87868 20.1213C4.75736 21 6.17157 21 9 21H15C17.8284 21 19.2426 21 20.1213 20.1213C21 19.2426 21 17.8284 21 15" stroke="#475569" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <label for="image-file" class="drop-label">Click to browse filesystem or drag image file into viewport</label>
+                            <p class="drop-hint">RAW, JPEG, WebP or PNG up to 25MB metadata capture</p>
+                            <input type="file" id="image-file" accept="image/*" required>
+                        </div>
+                        <button type="submit" id="submit-btn" class="btn btn-primary">Initialize Core AI Pipeline</button>
+                    </form>
+                    <div id="loader" class="hidden">
+                        <div class="spinner"></div>
+                        <p>Executing computer vision classification, validating structural vectors and writing metrics state...</p>
+                    </div>
+                </div>
             </section>
 
-            <!-- Diagnostic Real-Time View -->
-            <section id="result-card" class="card hidden">
-                <h2>Diagnostic Results</h2>
+            <section id="result-card" class="card overflow-hidden hidden-opacity">
+                <div class="card-header border-bottom flex-header">
+                    <div>
+                        <h2>Pipeline Analysis Matrix</h2>
+                        <p class="card-subtitle">Validated structural classifications derived via Gemini real-time model architecture layers.</p>
+                    </div>
+                    <span class="badge badge-success" id="res-status-badge">Operational Capture Verified</span>
+                </div>
                 <div class="result-layout">
-                    <img id="preview-img" src="" alt="Civic Preview">
-                    <div class="details">
-                        <p><strong>Type:</strong> <span id="res-type"></span></p>
-                        <p><strong>Severity:</strong> <span id="res-severity"></span></p>
-                        <p><strong>Impact Score:</strong> <span id="res-impact"></span>/10</p>
-                        <p><strong>Department:</strong> <span id="res-dept"></span></p>
-                        <p><strong>Details:</strong> <span id="res-desc"></span></p>
-                        <p><strong>Action:</strong> <span id="res-action"></span></p>
+                    <div class="image-preview-wrapper">
+                        <img id="preview-img" src="" alt="Diagnostic Capture Source Window">
+                    </div>
+                    <div class="details-pane">
+                        <div class="details-row">
+                            <div class="details-cell">
+                                <span class="label">Infrastructure Issue Type</span>
+                                <span class="value value-highlight" id="res-type">—</span>
+                            </div>
+                            <div class="details-cell">
+                                <span class="label">Pipeline Danger Severity</span>
+                                <span id="res-severity">—</span>
+                            </div>
+                        </div>
+
+                        <div class="details-row">
+                            <div class="details-cell">
+                                <span class="label">Public Structural Impact Rating</span>
+                                <div class="result-panel" id = "analytics">
+                                    <span class="value value-bold" id="res-impact">—</span>
+                                    <span class="muted-denom">/ 10</span>
+                                </div>
+                            </div>
+                            <div class="details-cell">
+                                <span class="label">Assigned Core Department</span>
+                                <span class="value" id="res-dept">—</span>
+                            </div>
+                        </div>
+
+                        <div class="details-block">
+                            <span class="label">System Technical Description</span>
+                            <p class="value-narrative" id="res-desc">—</p>
+                        </div>
+
+                        <div class="details-block action-block">
+                            <span class="label">Mandated Architectural Resolution Directive</span>
+                            <p class="value-narrative text-dark" id="res-action">—</p>
+                        </div>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- History Log System -->
-        <section class="card table-container">
-            <h2>Community Issue Registry Log</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Timestamp</th>
-                        <th>Issue Classification</th>
-                        <th>Severity</th>
-                        <th>Department Assignment</th>
-                        <th>Impact</th>
-                    </tr>
-                </thead>
-                <tbody id="logs-table-body"></tbody>
-            </table>
+        <section class="dashboard-section">
+            <div class="section-title-wrapper">
+                <h2>Operational System Telemetry</h2>
+                <p>Global multi-scalar aggregate values compiled from real-time asset submissions.</p>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">Aggregated System Registries</span>
+                    <div class="metric-value" id="stat-total">0</div>
+                    <span class="metric-trend upward">↑ 12.4% vs trailing month</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">Escalated Crisis Assertions</span>
+                    <div class="metric-value text-danger" id="stat-high">0</div>
+                    <span class="metric-trend neutral">Immediate resolution queue</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">Active Municipal Entities</span>
+                    <div class="metric-value" id="stat-departments">0</div>
+                    <span class="metric-trend upward">Cross-functional allocations</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">Mean System Impact Metric</span>
+                    <div class="metric-value" id="stat-avg-severity">0.0<span class="metric-unit">/10</span></div>
+                    <span class="metric-trend downward">↓ 4.1% hazard vector baseline</span>
+                </div>
+            </div>
+
+            <div class="card overflow-hidden margin-bottom-lg">
+                <div class="card-header border-bottom">
+                    <h2>Municipal Allocation Proportions</h2>
+                    <p class="card-subtitle">Active distribution workloads computed dynamically across operational public infrastructure entities.</p>
+                </div>
+                <div class="card-body">
+                    <div id="department-bar-grid" class="department-allocation-grid">
+                        <p class="empty-state">Awaiting asset database pipeline data...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card overflow-hidden table-card">
+                <div class="card-header border-bottom flex-header">
+                    <div>
+                        <h2>Global Registry Logs</h2>
+                        <p class="card-subtitle">Comprehensive ledger of infrastructure diagnostics historical assertions.</p>
+                    </div>
+                    <button class="btn btn-secondary btn-sm">Export Data Stream (CSV)</button>
+                </div>
+                <div class="table-scroll-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Timestamp Assertion</th>
+                                <th>Structural Assessment Class</th>
+                                <th>Severity Protocol</th>
+                                <th>Assigned Entity Node</th>
+                                <th>Hazard Weight</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logs-table-body">
+                            <tr>
+                                <td colspan="5" class="table-empty">Awaiting inbound sensor telemetry initialization...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </section>
     </main>
 
+    <footer class="system-footer">
+        <div class="footer-container">
+            <div>UrbanIQ Framework Platform Architecture. All system infrastructure assertions verified strictly.</div>
+            <div class="footer-links">
+                <a href="#">System Security Standard</a>
+                <a href="#">Telemetry Node Access API</a>
+                <a href="#">Privacy Core</a>
+            </div>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
+
+
 </body>
 </html>

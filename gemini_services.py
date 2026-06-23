@@ -3,7 +3,7 @@ import json
 import google.generativeai as genai
 from PIL import Image
 import io
-from dotenv import load_load
+from dotenv import load_dotenv
 
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
@@ -23,12 +23,10 @@ Return ONLY raw valid JSON text. No markdown formatting, no ```json wrappers.
 
 def analyze_issue_image(image_bytes: bytes) -> dict:
     image = Image.open(io.BytesIO(image_bytes))
-    # Using gemini-2.5-flash for real-time inference and structured JSON outputs
     model = genai.GenerativeModel('gemini-2.5-flash')
     
     response = model.generate_content(
         [PROMPT, image],
         generation_config={"response_mime_type": "application/json"}
     )
-    
     return json.loads(response.text)

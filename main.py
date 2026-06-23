@@ -1,11 +1,11 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from database import init_db, save_report, get_all_reports
-from gemini_service import analyze_issue_image
+from Database import init_db, save_report, get_all_reports
+from gemini_services import analyze_issue_image
 
-app = FastAPI(title="UrbanIQ API")
+app = FastAPI(title="UrbanIQ API Pipeline")
 
-# Allow Frontend Interaction
+# Cross-Origin resource configuration for Vercel deployment flexibility
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -36,7 +36,7 @@ async def get_dashboard_data():
         severity_stats = {"Low": 0, "Medium": 0, "High": 0}
         
         for r in reports:
-            sev = r["severity"].capitalize()
+            sev = r["severity"].capitalize() if r["severity"] else "Low"
             if sev in severity_stats:
                 severity_stats[sev] += 1
 
