@@ -25,6 +25,7 @@ async def report_issue(file: UploadFile = File(...)):
         analysis_result = {
     "issue_type": "Pothole",
     "severity": "High",
+    "impact_score": 5,
     "department": "Public Works",
     "description": "Test report",
     "recommended_action": "Repair road"
