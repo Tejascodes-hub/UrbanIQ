@@ -27,11 +27,13 @@ def analyze_issue_image(image_bytes: bytes) -> dict:
     image = Image.open(io.BytesIO(image_bytes))
     model = genai.GenerativeModel('gemini-1.5-flash')
     try:
-     
+      print("STARTING GEMINI REQUEST")
       response = model.generate_content(
         [PROMPT, image],
         generation_config={"response_mime_type": "application/json"}
     )
+      print('REQUEST COMPLETED')
+      print(response.text)
     except Exception as e:
       print('GEMINI ERROR :', e)
       raise

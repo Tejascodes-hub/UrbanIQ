@@ -1,7 +1,6 @@
 import sqlite3
 from datetime import datetime
-import os
-DB_path = os.environ.get("DB_pathy", "/tmp/database.db")
+
 
 DB_NAME = "database.db"
 
