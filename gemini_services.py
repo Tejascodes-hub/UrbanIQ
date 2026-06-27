@@ -33,15 +33,8 @@ def analyze_issue_image(image_bytes: bytes) -> dict:
         generation_config={"response_mime_type": "application/json"}
     )
     except Exception as e:
-      print("GEMINI ERROR:", e)
-      return {
-        "issue_type": "ERROR",
-        "severity": "High",
-        "impact_score": 10,
-        "department": "Public Works",
-        "description": str(e),
-        "recommended_action": "Check logs"
-    }
+      print('GEMINI ERROR :', e)
+      raise
 
     print("RAW RESPONSE:", response.text)
     return json.loads(response.text)
